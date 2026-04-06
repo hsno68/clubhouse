@@ -3,10 +3,13 @@ import { fileURLToPath } from "url";
 
 import express from "express";
 import session from "express-session";
-import router from "./router.js";
+import pgSession from "connect-pg-simple";
 
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
+
+import pool from "./db/pool.js";
+import router from "./router.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,7 +17,20 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3000;
 
+const PgSession = pgSession(session);
+
 app.set("view engine", "ejs");
+
+app.use(
+  session({
+    store: new PgSession({ pool }),
+    secret: "cats",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 14 * 24 * 60 * 60 * 1000 }, // 14 days = 2 weeks
+  })
+);
+app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
