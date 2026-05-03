@@ -4,8 +4,10 @@ form {
   gap: 0.5rem;
 }
 
-input {
-  padding: 0.5rem;
+input,
+textarea {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
 }
@@ -19,7 +21,6 @@ input {
 textarea {
   width: 100%;
   padding: 1rem;
-  font-size: 1rem;
   font-family: inherit;
   resize: vertical;
 }

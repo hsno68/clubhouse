@@ -17,3 +17,11 @@ export async function createUser({
     [first_name, last_name, username, hashedPassword, membership_status]
   );
 }
+
+export async function createMessage({ title, message, user_id }) {
+  await pool.query("INSERT INTO messages (title, message, user_id) VALUES ($1, $2, $3)", [
+    title,
+    message,
+    user_id,
+  ]);
+}

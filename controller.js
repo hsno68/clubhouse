@@ -39,6 +39,33 @@ export async function createUser(req, res) {
   res.redirect("/");
 }
 
+export async function createMessage(req, res) {
+  const { title, message } = req.body;
+  const { id } = req.user;
+  const safeTitle = title?.trim() ? title.trim() : "Untitled";
+
+  await db.createMessage({
+    title: safeTitle,
+    message,
+    user_id: id,
+  });
+  res.redirect("/");
+}
+
+export function requireAuth(req, res, next) {
+  if (!req.user) {
+    return res.redirect("/");
+  }
+  next();
+}
+
+export function redirectIfAuth(req, res, next) {
+  if (req.user) {
+    return res.redirect("/");
+  }
+  next();
+}
+
 export function signinUser(req, res, next) {
   passport.authenticate("local", {
     successRedirect: "/",
