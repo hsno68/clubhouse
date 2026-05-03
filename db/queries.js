@@ -5,6 +5,13 @@ export async function getUsers() {
   return rows;
 }
 
+export async function getMessages() {
+  const { rows } = await pool.query(
+    "SELECT title, message, timestamp, username FROM messages JOIN users ON messages.user_id = users.id"
+  );
+  return rows;
+}
+
 export async function createUser({
   first_name,
   last_name,

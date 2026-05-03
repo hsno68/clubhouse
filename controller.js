@@ -4,11 +4,14 @@ import bcrypt from "bcryptjs";
 
 export async function getHomepage(req, res) {
   const users = await db.getUsers();
+  const messages = await db.getMessages();
+
   res.render("layout", {
     title: "Home",
     page: "pages/homepage",
     css: "/css/homepage.css",
     users,
+    messages,
     user: req.user,
   });
 }

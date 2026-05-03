@@ -15,18 +15,21 @@
       <h2>Welcome Back</h2>
       <a href="/new-message" class="button new-message">New Message</a>
       <h3>Users</h3>
-      <ul>
+      <ul class="users-container">
         <% users.forEach(({username}) => { %>
-          <li>
+          <li class="users">
             <%= username %>
           </li>
         <% }) %>
       </ul>
       <h3>Messages</h3>
       <ul>
-        <% users.forEach(({username}) => { %>
-          <li>
-            <%= username %>
+        <% messages.forEach(({title, message, username, timestamp}) => { %>
+          <li class="messages">
+            <h4><%= title %></h4>
+            <p><%= locals.user.membership_status ? username : "Anonymous" %></p>
+            <p><%= message %></p>
+            <p><%= timestamp %></p>
           </li>
         <% }) %>
       </ul>
