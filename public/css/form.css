@@ -15,3 +15,11 @@ input {
   flex-direction: column;
   gap: 0.25rem;
 }
+
+textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+}

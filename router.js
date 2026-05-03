@@ -3,6 +3,7 @@ import {
   getHomepage,
   getSignup,
   getSignin,
+  getNewMessage,
   createUser,
   signinUser,
   signout,
@@ -13,6 +14,7 @@ const router = Router();
 router.get("/", getHomepage);
 router.get("/signup", getSignup);
 router.get("/signin", getSignin);
+router.get("/new-message", getNewMessage);
 router.get("/signout", signout);
 
 router.post("/signup", createUser);

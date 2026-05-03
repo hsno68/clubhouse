@@ -21,6 +21,10 @@ export function getSignin(req, res) {
   res.render("layout", { title: "Sign In", page: "pages/signin", css: "/css/form.css" });
 }
 
+export function getNewMessage(req, res) {
+  res.render("layout", { title: "New Mesage", page: "pages/new-message", css: "/css/form.css" });
+}
+
 export async function createUser(req, res) {
   const { first_name, last_name, username, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
